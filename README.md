@@ -4,7 +4,7 @@ The Database query builder is used to construct `SELECT, UPDATE, and DELETE` SQL
 
 You can get an instance of the database query builder using one of the following methods.
 
-```sh
+```php
 import Database from '@ioc:Adonis/Lucid/Database'
 
 const users = await Database
