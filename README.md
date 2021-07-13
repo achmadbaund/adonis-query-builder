@@ -97,3 +97,68 @@ Database.from((subquery) => {
     .as('total_marks')
 }).avg('total_marks.total')
 ```
+where
+
+The where method is used to define the where clause in your SQL queries. The query builder accepts a wide range of arguments types to let you leverage the complete power of SQL.
+
+The following example accepts the column name as the first argument and its value as the second argument.
+
+```php
+Database
+  .from('users')
+  .where('username', 'virk')
+```
+You can also define SQL operators, as shown below.
+
+```php
+Database
+  .from('users')
+  .where('created_at', '>', '2020-09-09')
+```
+
+// Using luxon to make the date
+
+```php
+Database
+  .from('users')
+  .where('created_at', '>', DateTime.local().toSQLDate())
+```
+
+// Using like operator
+
+```php
+Database
+  .from('posts')
+  .where('title', 'like', '%Adonis 101%')
+```
+
+Where groups
+
+You can create where groups by passing a callback to the where method. For example:
+
+```php
+Database
+  .from('users')
+  .where((query) => {
+    query
+      .where('username', 'virk')
+      .whereNull('deleted_at')
+  })
+  .orWhere((query) => {
+    query
+      .where('email', 'virk@adonisjs.com')
+      .whereNull('deleted_at')
+  })
+```
+
+Generated SQL
+
+```php
+SELECT * FROM "users"
+  WHERE (
+    "username" = ? AND "deleted_at" IS NULL
+  )
+  or (
+    "email" = ? AND "deleted_at" IS NULL
+  )
+```
