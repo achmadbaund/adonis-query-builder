@@ -162,3 +162,28 @@ SELECT * FROM "users"
     "email" = ? AND "deleted_at" IS NULL
   )
 ```
+
+Using raw queries
+
+Similarly, you can also define a raw query.
+
+```php
+Database
+  .from('user_groups')
+  .where(
+    'user_id',
+    Database
+      .raw(`select "user_id" from "users" where "users"."user_id" = ?`, [1])
+      .wrap('(', ')')
+  )
+```
+where method variants
+
+Following is the list of the where method variations and shares the same API.
+Method	Description
+
+andWhere	Alias for the where method
+orWhere	Adds an or where clause
+whereNot	Adds a where not clause
+orWhereNot	Adds an or where not clause
+andWhereNot	Alias for whereNot
