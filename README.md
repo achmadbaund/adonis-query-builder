@@ -180,10 +180,10 @@ Database
 where method variants
 
 Following is the list of the where method variations and shares the same API.
-Method	Description
 
-andWhere	Alias for the where method
-orWhere	Adds an or where clause
-whereNot	Adds a where not clause
-orWhereNot	Adds an or where not clause
-andWhereNot	Alias for whereNot
+
+`andWhere`	Alias for the where method
+`orWhere` Adds an or where clause
+`whereNot` Adds a where not clause
+`orWhereNot` Adds an or where not clause
+`andWhereNot`	Alias for whereNot
